@@ -6,14 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <title>Entrega Visualizacion</title>
 </head>
 <body>
     <h1>Entrega del trabajo</h1>
     <div style="display: flex; flex-direction: row; justify-content: left; align-items: flex-start;">
         <div class="btn-group-vertical" role="group" aria-label="Button group with nested dropdown">
-            <button type="button" class="btn ">lapiz</button>
-            <button type="button" class="btn ">goma</button>
+            <button type="button" class="btn "><i class="bi bi-pencil-fill"></i></button>
+            <button type="button" class="btn "><i class="bi bi-eraser-fill"></i></button>
             <label for="color">Color</label>
             <input type="color" id="color" class="border-0 rounded-pill" />
             <label for="tam">Tamaño</label>
@@ -28,13 +29,15 @@
                 <li><a class="dropdown-item" href="#">Dropdown link</a></li>
               </ul>
             </div>
-            <button type="button" class="btn">agregar imagen</button>
+            <button type="button" id="btnAddImage" class="btn" >agregar imagen</button>        
+            <input type="file" id="inputFile" style="display: none;">
+
             <button type="button" class="btn">guardar</button>
           </div>
         <canvas id="dibujo" width="600" height="500" style="border: solid 1px black;"></canvas>
         
     </div>
-  
+  <script src="js/script.js"></script>
 
 </body>
 </html>
