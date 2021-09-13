@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
   let imagen;
   let canvas = document.querySelector("#dibujo");
   let ctx = canvas.getContext("2d");
+  let accion= "sin seleccion"; 
+  let dibujando = false;
 
   document.querySelector("#btnAddImage").addEventListener("click", (e) => {
     document.querySelector("#inputFile").click();
@@ -12,6 +14,28 @@ document.addEventListener("DOMContentLoaded", (event) => {
   document.querySelector("#inputFile").addEventListener("change", (e) => {   
     loadImage(e.target.files[0]);    
   });
+
+  document.querySelector("#lapiz").addEventListener("click", (event) =>{
+    accion = "escribir";
+  } );
+  document.querySelector("#goma").addEventListener("click", (event) =>{
+    accion = "borrar";
+  } );
+
+  //let canvas = document.querySelector("#dibujo");
+
+  let coordenadas = canvas.getBoundingClientRect();   //https://ed.team/blog/obtener-la-posicion-de-un-elemento-html-con-javascript
+
+  canvas.addEventListener("mousedown", function (e) {
+    dibujando = true;
+    dibujarEnCanvas(e);
+  });
+  canvas.addEventListener("mouseup", function () {
+    dibujando = false;
+    //accion = "sin seleccion";
+    ctx.beginPath();
+  });
+  canvas.addEventListener("mousemove", dibujarEnCanvas);
 
 
   loadImage = (file) => {
@@ -29,7 +53,27 @@ document.addEventListener("DOMContentLoaded", (event) => {
         ctx.putImageData(imageData, 0, 0);
       };     
     }
- 
   }
+
+  function dibujarEnCanvas (event) {
+    
+    if (dibujando){
+      ctx.lineWidth = document.querySelector("#tamano").value;
+      if (accion == "escribir" ){
+        ctx.strokeStyle =document.querySelector("#color").value;
+        ctx.lineCap = "round";
+      }
+      if (accion == "borrar"){
+        ctx.strokeStyle = "#FFFFFF"; // color blanco
+        ctx.lineCap = "square";
+      }
+      ctx.lineTo(event.clientX - coordenadas.left, event.clientY - coordenadas.top); // re-leer 
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(event.clientX - coordenadas.left, event.clientY - coordenadas.top);
+    }
+
+  }
+
   
 });
