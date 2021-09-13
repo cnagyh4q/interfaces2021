@@ -1,49 +1,35 @@
-document.addEventListener("DOMContentLoaded", event =>{ 
+document.addEventListener("DOMContentLoaded", (event) => {
+  //variables globales//
+  let imagen;
+  let canvas = document.querySelector("#dibujo");
+  let ctx = canvas.getContext("2d");
 
-//variables globales//
-let imagen;
+  document.querySelector("#btnAddImage").addEventListener("click", (e) => {
+    document.querySelector("#inputFile").click();
+  });
+  
+
+  document.querySelector("#inputFile").addEventListener("change", (e) => {   
+    loadImage(e.target.files[0]);    
+  });
 
 
-
-document.querySelector('#btnAddImage').addEventListener('click' , e => {
-    document.querySelector('#inputFile').click();
-
-})
-let canvas = document.querySelector('#dibujo');
-let ctx = canvas.getContext("2d");
-
-
-document.querySelector('#inputFile').addEventListener('change' , e => {
-
-    let file = e.target.files[0];
+  loadImage = (file) => {
     let reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = (readerEvent) => {
-      let content = readerEvent.target.result; // this is the content!
+      let content = readerEvent.target.result; 
       imagen = new Image();
-      imagen.src = content;
-      imgLoad();
-    };
-})
-
-
-function imgLoad() {    
-
-    imagen.onload = function () {
-
-      let imageAspectRatio = (1.0 * this.width) / this.height;
-      let imageScaledHeight = canvas.height;
-      let imageScaledWidth = canvas.height * imageAspectRatio;
-      canvas.width = imageScaledWidth;
-
-      ctx.drawImage(this, 0, 0, imageScaledWidth, imageScaledHeight);
-
-      let imageData = ctx.getImageData(0, 0, imageScaledWidth, imageScaledHeight);
-
-      ctx.putImageData(imageData, 0, 0);
-    
+      imagen.src = content; 
+      imagen.onload = function() {
+        let ratio = this.width / this.height;
+        canvas.width = canvas.height * ratio;
+        ctx.drawImage(this, 0, 0, canvas.width, canvas.height);
+        let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        ctx.putImageData(imageData, 0, 0);
+      };     
     }
-}
-
-
-})
+ 
+  }
+  
+});
