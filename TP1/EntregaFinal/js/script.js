@@ -32,9 +32,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
   });
   canvas.addEventListener("mouseup", function () {
     dibujando = false;
-    //accion = "sin seleccion";
+    //accion = "sin seleccion"; ver si lo dejams con el mouse up
     ctx.beginPath();
   });
+  
   canvas.addEventListener("mousemove", dibujarEnCanvas);
 
 
@@ -57,7 +58,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   function dibujarEnCanvas (event) {
     
-    if (dibujando){
+    if (dibujando && !(accion == "sin seleccion")){
       ctx.lineWidth = document.querySelector("#tamano").value;
       if (accion == "escribir" ){
         ctx.strokeStyle =document.querySelector("#color").value;
