@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   let ctx = canvas.getContext("2d");
   let accion = "sin seleccion";
   let dibujando = false;
+  let content = null;
 
   document.querySelector("#btnAddImage").addEventListener("click", (e) => {
     document.querySelector("#inputFile").click();
@@ -41,18 +42,32 @@ document.addEventListener("DOMContentLoaded", (event) => {
     let reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = (readerEvent) => {
-      let content = readerEvent.target.result;
+      content = readerEvent.target.result;
       imagen = new Image();
-      imagen.src = content;
-      imagen.onload = function () {
+      //imagen.src = content;
+      loadImg();
+      /*imagen.onload = function () {
         let ratio = this.width / this.height;
         canvas.width = canvas.height * ratio;
         ctx.drawImage(this, 0, 0, canvas.width, canvas.height);
         let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         ctx.putImageData(imageData, 0, 0);
-      };
+      };*/
     };
   };
+
+
+  function loadImg(){     // Funcion para restablecer la imagen.
+      imagen.src = content;
+      imagen.onload = function () {
+      let ratio = this.width / this.height;
+      canvas.width = canvas.height * ratio;
+      ctx.drawImage(this, 0, 0, canvas.width, canvas.height);
+      let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      ctx.putImageData(imageData, 0, 0);
+      };
+
+  }
 
   function dibujarEnCanvas(event) {
     if (dibujando && !(accion == "sin seleccion")) {
@@ -77,6 +92,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
       );
     }
   }
+  document.querySelector("#limpiar").addEventListener("click", () => {
+    loadImg();
+  });
 
   document.querySelector("#brillo").addEventListener("click", () => {
     aplicaFiltro(ctx.getImageData(0, 0, canvas.width, canvas.height), brillo);
@@ -86,14 +104,36 @@ document.addEventListener("DOMContentLoaded", (event) => {
     aplicaFiltro(ctx.getImageData(0, 0, canvas.width, canvas.height), sepia);
   });
 
+  document.querySelector("#negativo").addEventListener("click", () => {
+    aplicaFiltro(ctx.getImageData(0, 0, canvas.width, canvas.height), negativo);
+  });
+
+  document.querySelector("#binarizar").addEventListener("click", () => {
+    aplicaFiltro(ctx.getImageData(0, 0, canvas.width, canvas.height), binarizacion);
+  });
+
+  document.querySelector("#blur").addEventListener("click", () => {
+    aplicaFiltro(ctx.getImageData(0, 0, canvas.width, canvas.height), "blur");
+  });
+
+  
+
   aplicaFiltro = (imageData, filtro) => {
     let data = imageData.data;
     for (let index = 0; index < data.length ; index += 4) {
-         filtro(data, index);
+      if (filtro === "blur")  {
+          blur(data,index,imageData)
+          //console.log ("blur");
+      } 
+      else{
+        filtro(data, index);
+      } 
+
       }
       ctx.putImageData(imageData, 0, 0);
     
   };
+
 
   brillo = (data, index) => {
     data[index] += 50;
@@ -120,6 +160,53 @@ document.addEventListener("DOMContentLoaded", (event) => {
     data[index + 2] = b;
   };
 
+  negativo = (data,index) => {
+    let r = 255 - data[index];       //sin el 255 - queda en blanco y negro tradicional. 
+    let g = 255 - data[index + 1];
+    let b = 255 - data[index + 2];
+    let grey = (r + g + b) / 3;
+    
 
+
+    data[index + 0] = grey;   //R
+    data[index + 1] = grey;   //G
+    data[index + 2] = grey;   //B
+
+  }
+
+  binarizacion = (data,index) => {
+
+    let r = data[index];      
+    let g = data[index + 1];
+    let b = data[index + 2];
+    let grey = (r + g + b) / 3;
+
+    if (grey > 120)  // Definimos un Umbral en 120 , podria setearce desde afuera haciendo unos cambios
+      grey = 255;
+    else
+      grey = 0;
+
+    data[index + 0] = grey;   //R
+    data[index + 1] = grey;   //G
+    data[index + 2] = grey;   //B
+
+  }
+
+  blur = (data,index,imageData) =>{
+    
+    data[ index ] = (
+      data[index] +
+      data[index + 4] || data[index] +   //si se va de rango por estar fueras de las dimenciones de la matriz toma el valor del pixel original.
+      data[index - 4] || data[index] +
+      data[index + 4 * imageData.width] || data[index] +
+      data[index - 4 * imageData.width] || data[index] +
+
+      data[index + 4 * imageData.width + 4] || data[index] +
+      data[index + 4 * imageData.width - 4] || data[index] +
+      data[index - 4 * imageData.width + 4] || data[index] +
+      data[index - 4 * imageData.width - 4] || data[index] 
+      )/9
+
+  }
 
 });
