@@ -18,7 +18,7 @@
             <button type="button" class="btn " id="goma"><i class="bi bi-eraser-fill"></i></button>
             <label for="color">Color</label>
             <input type="color" id="color" class="border-0 rounded-pill" />
-            <label for="tamano">Tamaño</label>
+            <label for="tamano">Espezor</label>
             <input type="range" class="rounded-pill btn btn-primary" id="tamano" min="1" max="25" value="1" />
           
             <div class="btn-group-vertical" role="group">
@@ -26,8 +26,12 @@
                 filtros
               </button>
               <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                <li><a class="dropdown-item" id="limpiar" href="#">restablecer</a></li>
                 <li><a class="dropdown-item" id="brillo" href="#">brillo</a></li>
                 <li><a class="dropdown-item" id="sepia" href="#">sepia</a></li>
+                <li><a class="dropdown-item" id="negativo" href="#">negativo</a></li>
+                <li><a class="dropdown-item" id="binarizar" href="#">inarizacion</a></li>
+                <li><a class="dropdown-item" id="blur" href="#">BLUR</a></li>
               </ul>
             </div>
             <button type="button" id="btnAddImage" class="btn" >agregar imagen</button>        
