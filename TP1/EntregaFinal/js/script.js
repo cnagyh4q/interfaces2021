@@ -23,7 +23,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
     accion = "borrar";
   });
 
-  //let canvas = document.querySelector("#dibujo");
 
   let coordenadas = canvas.getBoundingClientRect(); //https://ed.team/blog/obtener-la-posicion-de-un-elemento-html-con-javascript
 
@@ -72,7 +71,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       ctx.lineTo(
         event.clientX - coordenadas.left,
         event.clientY - coordenadas.top
-      ); // re-leer
+      ); 
       ctx.stroke();
       ctx.beginPath();
       ctx.moveTo(
