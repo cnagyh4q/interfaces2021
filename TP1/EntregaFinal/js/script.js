@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   let accion = "sin seleccion";
   let dibujando = false;
   let content = null;
+  let valorSaturacion = 0;
 
   document.querySelector("#btnAddImage").addEventListener("click", (e) => {
     document.querySelector("#inputFile").click();
@@ -44,30 +45,18 @@ document.addEventListener("DOMContentLoaded", (event) => {
     reader.onload = (readerEvent) => {
       content = readerEvent.target.result;
       imagen = new Image();
-      //imagen.src = content;
-      loadImg();
-      /*imagen.onload = function () {
+      imagen.src = content;
+      imagen.onload = function () {
         let ratio = this.width / this.height;
         canvas.width = canvas.height * ratio;
         ctx.drawImage(this, 0, 0, canvas.width, canvas.height);
         let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         ctx.putImageData(imageData, 0, 0);
-      };*/
+      };
     };
   };
 
 
-  function loadImg(){     // Funcion para restablecer la imagen.
-      imagen.src = content;
-      imagen.onload = function () {
-      let ratio = this.width / this.height;
-      canvas.width = canvas.height * ratio;
-      ctx.drawImage(this, 0, 0, canvas.width, canvas.height);
-      let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-      ctx.putImageData(imageData, 0, 0);
-      };
-
-  }
 
   function dibujarEnCanvas(event) {
     if (dibujando && !(accion == "sin seleccion")) {
@@ -93,7 +82,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
   }
   document.querySelector("#limpiar").addEventListener("click", () => {
-    loadImg();
+    imagen.onload();
   });
 
   document.querySelector("#brillo").addEventListener("click", () => {
@@ -109,31 +98,55 @@ document.addEventListener("DOMContentLoaded", (event) => {
   });
 
   document.querySelector("#binarizar").addEventListener("click", () => {
-    aplicaFiltro(ctx.getImageData(0, 0, canvas.width, canvas.height), binarizacion);
+    aplicaFiltro(
+      ctx.getImageData(0, 0, canvas.width, canvas.height),
+      binarizacion
+    );
   });
 
   document.querySelector("#blur").addEventListener("click", () => {
     aplicaFiltro(ctx.getImageData(0, 0, canvas.width, canvas.height), "blur");
   });
 
-  
+
+  document.querySelector("#saturacion").addEventListener("change", () => {
+    imagen.onload();
+    valorSaturacion = document.querySelector("#saturacion").value
+    aplicaFiltro(ctx.getImageData(0, 0, canvas.width, canvas.height), saturacion);
+  });
+
+  document.querySelector("#descartar").addEventListener("click", () => {
+    canvas.width = '800';
+    canvas.height = '600';
+    ctx.getImageData(0, 0, canvas.width, canvas.height) = null;
+    content = null;
+    imagen = null;
+  });
+
+
+  document.querySelector("#descarga").addEventListener("click", function () {
+   this.href = canvas.toDataURL("image/jpg");
+   
+  });
+
+ 
 
   aplicaFiltro = (imageData, filtro) => {
-    let data = imageData.data;
-    for (let index = 0; index < data.length ; index += 4) {
-      if (filtro === "blur")  {
-          blur(data,index,imageData)
-          //console.log ("blur");
-      } 
-      else{
+    let data = imageData.data;    
+
+    if (filtro === "blur") {   
+      let copiaData = imageData.data.slice();   
+      for (let index = 0; index < data.length; index ++)
+     
+        blur(data, index, copiaData, imageData.width);
+     
+    } else {
+      for (let index = 0; index < data.length; index += 4) {
         filtro(data, index);
-      } 
-
       }
-      ctx.putImageData(imageData, 0, 0);
-    
+    }
+    ctx.putImageData(imageData, 0, 0);
   };
-
 
   brillo = (data, index) => {
     data[index] += 50;
@@ -160,53 +173,58 @@ document.addEventListener("DOMContentLoaded", (event) => {
     data[index + 2] = b;
   };
 
-  negativo = (data,index) => {
-    let r = 255 - data[index];       //sin el 255 - queda en blanco y negro tradicional. 
+  negativo = (data, index) => {
+    let r = 255 - data[index]; //sin el 255 - queda en blanco y negro tradicional.
     let g = 255 - data[index + 1];
     let b = 255 - data[index + 2];
     let grey = (r + g + b) / 3;
-    
 
+    data[index + 0] = grey; //R
+    data[index + 1] = grey; //G
+    data[index + 2] = grey; //B
+  };
 
-    data[index + 0] = grey;   //R
-    data[index + 1] = grey;   //G
-    data[index + 2] = grey;   //B
-
-  }
-
-  binarizacion = (data,index) => {
-
-    let r = data[index];      
+  binarizacion = (data, index) => {
+    let r = data[index];
     let g = data[index + 1];
     let b = data[index + 2];
     let grey = (r + g + b) / 3;
 
-    if (grey > 120)  // Definimos un Umbral en 120 , podria setearce desde afuera haciendo unos cambios
+    if (grey > 120)
+      // Definimos un Umbral en 120 , podria setearce desde afuera haciendo unos cambios
       grey = 255;
-    else
-      grey = 0;
+    else grey = 0;
 
-    data[index + 0] = grey;   //R
-    data[index + 1] = grey;   //G
-    data[index + 2] = grey;   //B
+    data[index + 0] = grey; //R
+    data[index + 1] = grey; //G
+    data[index + 2] = grey; //B
+  };
 
+  blur = (data, index, copiaData, width) => {
+     data[index] =
+      (copiaData[index] +
+        (copiaData[index + 4] || data[index]) +
+        (copiaData[index - 4] || data[index]) +
+        (copiaData[index + 4 * width] || data[index]) +
+        (copiaData[index - 4 * width] || data[index]) +
+        (copiaData[index + 4 * width + 4] || data[index]) +
+        (copiaData[index + 4 * width - 4] || data[index]) +
+        (copiaData[index - 4 * width + 4] || data[index]) +
+        (copiaData[index - 4 * width - 4] || data[index])) /
+      9;   
+  };
+
+  saturacion = (data, index) =>{
+   ;
+    let r = data[index];
+    let g = data[index + 1];
+    let b = data[index + 2];
+
+    var gray = 0.2989 * r + 0.5870 * g + 0.1140 * b;
+    data[index] = gray * valorSaturacion + data[index] * (1 - valorSaturacion);
+    data[index + 1] = gray * valorSaturacion + data[index + 1] * (1 - valorSaturacion);
+    data[index + 2] = gray * valorSaturacion + data[index + 2] * (1 - valorSaturacion);
   }
 
-  blur = (data,index,imageData) =>{
-    
-    data[ index ] = (
-      data[index] +
-      data[index + 4] || data[index] +   //si se va de rango por estar fueras de las dimenciones de la matriz toma el valor del pixel original.
-      data[index - 4] || data[index] +
-      data[index + 4 * imageData.width] || data[index] +
-      data[index - 4 * imageData.width] || data[index] +
-
-      data[index + 4 * imageData.width + 4] || data[index] +
-      data[index + 4 * imageData.width - 4] || data[index] +
-      data[index - 4 * imageData.width + 4] || data[index] +
-      data[index - 4 * imageData.width - 4] || data[index] 
-      )/9
-
-  }
 
 });
