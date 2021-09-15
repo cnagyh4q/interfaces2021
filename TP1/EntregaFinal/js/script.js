@@ -173,14 +173,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
   };
 
   negativo = (data, index) => {
-    let r = 255 - data[index]; //sin el 255 - queda en blanco y negro tradicional.
-    let g = 255 - data[index + 1];
-    let b = 255 - data[index + 2];
-    let grey = (r + g + b) / 3;
-
-    data[index + 0] = grey; //R
-    data[index + 1] = grey; //G
-    data[index + 2] = grey; //B
+    
+    data[index + 0] = 255 - data[index]; 
+    data[index + 1] = 255 - data[index + 1];
+    data[index + 2] = 255 - data[index + 2];
   };
 
   binarizacion = (data, index) => {
