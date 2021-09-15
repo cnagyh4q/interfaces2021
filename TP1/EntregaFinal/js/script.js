@@ -23,7 +23,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
     accion = "borrar";
   });
 
-  //let canvas = document.querySelector("#dibujo");
 
   let coordenadas = canvas.getBoundingClientRect(); //https://ed.team/blog/obtener-la-posicion-de-un-elemento-html-con-javascript
 
@@ -72,7 +71,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       ctx.lineTo(
         event.clientX - coordenadas.left,
         event.clientY - coordenadas.top
-      ); // re-leer
+      ); 
       ctx.stroke();
       ctx.beginPath();
       ctx.moveTo(
@@ -174,14 +173,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
   };
 
   negativo = (data, index) => {
-    let r = 255 - data[index]; //sin el 255 - queda en blanco y negro tradicional.
-    let g = 255 - data[index + 1];
-    let b = 255 - data[index + 2];
-    let grey = (r + g + b) / 3;
-
-    data[index + 0] = grey; //R
-    data[index + 1] = grey; //G
-    data[index + 2] = grey; //B
+    
+    data[index + 0] = 255 - data[index]; 
+    data[index + 1] = 255 - data[index + 1];
+    data[index + 2] = 255 - data[index + 2];
   };
 
   binarizacion = (data, index) => {
