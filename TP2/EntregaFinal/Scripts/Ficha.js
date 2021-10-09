@@ -6,6 +6,7 @@ class Ficha extends Figura {
         super (posX,posY ,color,context);
         this.radio = radio;
         this.jugador = jugador;
+        //this.disponible=true;
     }
 
 
@@ -25,6 +26,8 @@ class Ficha extends Figura {
         this.context.closePath();
         
     }
+
+    
 
     getJugador(){
         return this.jugador;

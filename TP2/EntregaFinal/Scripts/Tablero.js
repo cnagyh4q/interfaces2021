@@ -10,7 +10,7 @@ class Tablero extends Figura {
         this.ancho = ancho;
         this.cantFil = cantFil;
         this.cantCol = cantCol;
-
+        super.setDisponible(false);
     }
 
     setPos(){
@@ -48,10 +48,11 @@ class Tablero extends Figura {
 
         if (fila !== -1 ){
             ficha.setPos((inicioRangoCol+(rangoCol/2)),(inicioRangoFil+(rangoFil/2)));
+            ficha.setDisponible(false);
             bitacora.agregarJugada(fila,columna,ficha.getJugador());
         }
         
-
+        bitacora.juegoTerminado(columna,fila);
 
         
         /*return { 'x' : x ,

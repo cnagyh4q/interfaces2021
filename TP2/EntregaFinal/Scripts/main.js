@@ -24,13 +24,13 @@ window.onload = function() {
 
 
 function crearJuego(){
-    let img = document.querySelector('#img5Linea');
+    let img = document.querySelector('#img4Linea');
     for (let index = 1; index < cantFichasTotal; index++) {
         agregarFicha(index);
     }
-    //if (4 enlina etc)
-    bitacora = new Bitacora (8,9);
-    tablero = new Tablero (img,200, 100, 'white',ctx, 800, 700,8,9);
+    //if (4 enLinea or //5 enLinea // etc)
+    bitacora = new Bitacora (6,7);
+    tablero = new Tablero (img,200, 100, 'white',ctx, 800, 700,6,7);
     arre.push(tablero);
     drawFigure();
 }
@@ -115,7 +115,7 @@ function onMouseMove(e) {
 function findClickedFigure(x, y) {
     for (let i = 0; i < arre.length; i++) {
         const element = arre[i];
-        if (element.isPointInside(x, y)){// && (element.getFill() != ultimoJugador)) {
+        if (element.isPointInside(x, y) && element.isDisponible()){// && (element.getFill() != ultimoJugador)) {
             return element;
         }
     }

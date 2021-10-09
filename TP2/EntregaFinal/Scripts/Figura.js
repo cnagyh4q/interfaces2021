@@ -6,11 +6,20 @@ class Figura {
        this.color = color;
        this.context = context;
        this.colorR= "black";
-       this.resaltado = false;       
+       this.resaltado = false;
+       this.disponible=true;       
     }
 
     setColor(color){
         this.color= color;
+    }
+
+    setDisponible(disponible){
+        this.disponible = disponible;
+    }
+    
+    isDisponible(){
+        return this.disponible;
     }
     
     setPos(posX , posY){
