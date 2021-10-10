@@ -1,9 +1,10 @@
 class Bitacora {
 
-    constructor (cantFil,cantCol){
+    constructor (cantFil,cantCol,tipoJuego){
         this.cantFil = cantFil;
         this.cantCol = cantCol;
         this.juego = new Array(cantFil-1);
+        this.tipoJuego = tipoJuego;
         this.inicJuego();
     }
 
@@ -17,7 +18,7 @@ class Bitacora {
     }
 
     agregarJugada(x,y,jugador){
-        console.log(this.juego);
+      
         if ( (0 <= x < this.cantFil) && (0 <= y < this.cantCol) && this.juego[x][y]== 0 )
             this.juego[x][y]= jugador;
     }
@@ -34,7 +35,7 @@ class Bitacora {
 
     juegoTerminado(col,fil){
         
-        if (this.revisarPorColumna(col,fil) || this.revisarPorFila(col,fil)){// || this.revisarDiagonalDesDeDerchaAIzq(col,fil) ){//|| revisarDiagonalAsc(col,fil)){
+        if (this.revisarPorColumna(col,fil) || this.revisarPorFila(col,fil) || this.revisarDiagonales(col,fil)){// || this.revisarDiagonalDesDeDerchaAIzq(col,fil) ){//|| revisarDiagonalAsc(col,fil)){
             alert ("Ganador :" + this.juego[fil][col]);
         }
     }
@@ -46,7 +47,7 @@ class Bitacora {
         for (let i = 0; i < this.cantCol; i++){
             if (this.juego[fil][i] == jugador){
                 cont++;
-                if (cont == 4){
+                if (cont == this.tipoJuego){
                     return true;
                 }
             }
@@ -62,7 +63,7 @@ class Bitacora {
         for (let j = 0; j < this.cantFil; j++){
             if (this.juego[j][col] == jugador){
                 cont++;
-                if (cont == 4){
+                if (cont == this.tipoJuego){
                     return true;
                 }
             }
@@ -73,114 +74,84 @@ class Bitacora {
         return false;
     }
 
-    revisarDiagonalDesDeDerchaAIzq(col,fil){
+    revisarDiagonales(col,fil){
+
         let jugador=this.juego[fil][col];
-        let cont =0;
-        let sigo 
-        let j=0;
-        for (let i = 0; i < this.cantCol; i++) {
-            sigo=true;
-            while (sigo){
 
-                if ( (i>=0) && (j >= 0) && (j < this.cantFil)){
-                    if (this.juego[j][i] == jugador){
-                        cont++;
-                        i++;
-                        j--;
-                        if (cont == 4){
-                            return true;
-                        }
-                    }
-                    else{
-                        cont=0;
-                    }
-                }
-                else{
-                    sigo=false;
-                    j++;
-                }
-            
-            }   
-         /*   
-            for (let j = 0; j < this.cantFil; j++){
-                if ( (i>=0) && (j >= 0)){
-                    if (this.juego[j][i] == jugador){
-                        cont++;
-                        i++;
-                        j--;
-                        if (cont == 4){
-                            return true;
-                        }
-                    }
-                    else{
-                        cont=0;
-                    }
-                    
-                }
-            }  */  
+        let encontrado = false;
+        let inicioDiagAscendente={"f" : 0 , "c": 0}
+        let auxC = col;
+        let auxF= fil;
+        while (!encontrado) {
+
+            if (auxC -1 >= 0 && auxF +1 < this.cantFil  ){
+                auxF ++;
+                auxC --;
+            }else {
+                encontrado = true;
+                inicioDiagAscendente= {"f" : auxF , "c": auxC};
+            }
         }
-    
+
+        encontrado = false;
+        let inicioDiagDesendente={"f" : 0 , "c": 0}
+        auxC = col;
+        auxF= fil;
+        while (!encontrado) {
+                if (auxF -1 >= 0 && auxC -1 >= 0 ){
+                    auxF --;
+                    auxC --;
+            }
+            else {
+                encontrado = true;
+                inicioDiagDesendente= {"f" : auxF , "c": auxC};
+            }
+        }
+
+        let i = inicioDiagAscendente.f;
+        let j = inicioDiagAscendente.c;
+        let cont = 0;
+
+        while ( i >= 0 && j < this.cantCol ){
+
+            if (this.juego[i][j] == jugador) {
+                cont ++
+                if (cont == this.tipoJuego){
+                    return true
+                }
+
+            }
+            else {
+                cont =0;
+            }
+            i--;
+            j++;
+        }
+
+         i = inicioDiagDesendente.f;
+         j = inicioDiagDesendente.c;
+         cont = 0;
+
+        while ( i < this.cantFil && j < this.cantCol ){
+            if (this.juego[i][j] == jugador) {
+                cont ++
+                if (cont == this.tipoJuego){
+                    return true
+                }
+
+            }
+            else {
+                cont =0;
+            }
+            i++;
+            j++;
+        }
+
         return false;
+
     
-    
     }
-        /*
-        for (let i = -(this.col + 4); i < this.col; i++) {
-        let n1 = 0;
-        let n2 = 0;
-        for (let f = 0; f < this.fil; f++) {
-            let c = i + f;
-            if ((c < 0) || (c >= this.col))
-                continue;
-            if (this.juego[f][c] == 'vacio') {
-                n1 = 0;
-                n2 = 0;
-            }
-            else if (this.juego[f][c].getFill() == 'yellow') {
-                n1++;
-                n2 = 0;
-                if (n1 == 4)
-                    return 'yellow';
-            }
-            else if (this.juego[f][c].getFill() == 'red') {
-                n1 = 0;
-                n2++;
-                if (n2 == 4)
-                    return 'red';
-            }
-        }
-    }
-
-/*
-    for (let i = 0; i < this.col + 4; i++) {
-        let n1 = 0;
-        let n2 = 0;
-        for (let f = 0; f < this.fil; f++) {
-            let c = i - f;
-            if ((c < 0) || (c >= this.col))
-                continue;
-            if (this.juego[f][c] == 'vacio') {
-                n1 = 0;
-                n2 = 0;
-            }
-            else if (this.juego[f][c].getFill() == 'yellow') {
-                n1++;
-                n2 = 0;
-                if (n1 == 4)
-                    return 'yellow';
-            }
-            else if (this.juego[f][c].getFill() == 'red') {
-                n1 = 0;
-                n2++;
-                if (n2 == 4)
-                    return 'red';
-            }
-        }
-    }
-    return 'vacio';
-*/
-
-
+        
 
 
 }

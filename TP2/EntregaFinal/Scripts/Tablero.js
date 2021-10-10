@@ -18,26 +18,13 @@ class Tablero extends Figura {
     }
 
     dibujar() {
-        super.dibujar();
-        /*this.context.fillRect(this.posX, this.posY, this.ancho, this.alto);
-        if (this.resaltado) {
-            this.context.strokeStyle = this.colorR;
-            this.context.lineWidth = 5;
-            this.context.strokeRect(this.posX, this.posY, this.ancho, this.alto);
-
-        }*/
-
-        let imageAspectRatio = this.img.width / (this.img.height); 
-        let imageScaledWidth = this.alto * imageAspectRatio;
-
-        this.context.drawImage(this.img,this.posX,this.posY,this.ancho,this.alto,);
-        //this.context.drawImage(this.img, this.posX, this.posY, imageScaledWidth, this.ancho);
-        //this.context.drawImage(this.img, 200, 80, 800, 700);
+        super.dibujar(); 
+        this.context.drawImage(this.img,this.posX,this.posY,this.ancho,this.alto);
+        
     }
   
     agregarFicha(ficha,x,y,bitacora){
-        //200-1000 Columnas
-        //0-700  
+      
         let rangoCol = (this.ancho / this.cantCol);
         let rangoFil = (this.alto / this.cantFil);
         let columna = Math.trunc((x- this.posX) / rangoCol) ;
@@ -55,9 +42,7 @@ class Tablero extends Figura {
         bitacora.juegoTerminado(columna,fila);
 
         
-        /*return { 'x' : x ,
-                 'y' : y 
-        }*/
+        
     }
 
     getAncho() {
@@ -72,5 +57,13 @@ class Tablero extends Figura {
         return !(x < this.posX || x > this.posX + this.ancho || y < this.posY || y > this.posY + this.alto);
     }
 
+    isRangeInside(x) {
+
+        return ( this.posX <= x && x<= (this.posX + this.ancho)) ? true : false; 
+        
+    }
+    
+
+   
 
 }
