@@ -1,17 +1,12 @@
 class Figura {
 
-    constructor (posX ,posY , color , context ){
+    constructor (posX ,posY , context ){
        this.posX = posX;
        this.posY = posY;
-       this.color = color;
        this.context = context;
        this.colorR= "black";
        this.resaltado = false;
        this.disponible=true;       
-    }
-
-    setColor(color){
-        this.color= color;
     }
 
     setDisponible(disponible){
@@ -55,8 +50,7 @@ class Figura {
         return this.context;
     }
 
-    dibujar(){
-        this.context.fillStyle = this.color;
+    dibujar(){        
     }
 
     setColorR(colorR){

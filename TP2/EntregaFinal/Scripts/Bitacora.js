@@ -36,8 +36,10 @@ class Bitacora {
     juegoTerminado(col,fil){
         
         if (this.revisarPorColumna(col,fil) || this.revisarPorFila(col,fil) || this.revisarDiagonales(col,fil)){// || this.revisarDiagonalDesDeDerchaAIzq(col,fil) ){//|| revisarDiagonalAsc(col,fil)){
-            alert ("Ganador :" + this.juego[fil][col]);
+            
+            return true;
         }
+        return false;
     }
 
     revisarPorColumna(col,fil){
