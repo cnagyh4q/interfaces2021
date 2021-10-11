@@ -2,22 +2,34 @@ class Ficha extends Figura {
 
 
 
-    constructor (posX , posY , color , context , radio,jugador){
-        super (posX,posY ,color,context);
+    constructor (posX , posY , context , radio,jugador , imagen ){
+        super (posX,posY ,context);
         this.radio = radio;
         this.jugador = jugador;
+        this.imagen = imagen;
         //this.disponible=true;
+        
     }
 
 
     dibujar (){
         super.dibujar(); 
         this.context.beginPath();
-        //this.context.fillStyle = this.color;
-        this.context.arc( this.posX , this.posY , this.radio , 0 , 2 * Math.PI);
-        //this.context.arc( 50 , 50 , 20, 0 , 2 * Math.PI);
-        this.context.fill();
-        //this.context.stroke();
+        let img;
+        img = document.querySelector(this.imagen);
+        let imageScaled = this.radio * 2;
+        let posy = this.posY - this.radio;
+        let posx = this.posX - this.radio;
+
+        this.context.drawImage(img, posx, posy, imageScaled, imageScaled);
+
+        this.context.beginPath();
+        this.context.arc(this.posX, this.posY, this.radio, 0, 2 * Math.PI);
+
+        this.context.strokeStyle="grey";            
+        this.context.lineWidth=1;
+        this.context.stroke();
+    
         if ( this.resaltado ){
             this.context.strokeStyle=this.colorR;            
             this.context.lineWidth=5;

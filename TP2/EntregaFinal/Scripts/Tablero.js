@@ -2,9 +2,9 @@ class Tablero extends Figura {
 
     
 
-    constructor(img,posX, PosY, color, context, ancho, alto,cantFil,cantCol) {
+    constructor(img,posX, PosY, context, ancho, alto,cantFil,cantCol) {
 
-        super(posX, PosY, color, context);
+        super(posX, PosY, context);
         this.img = img;
         this.alto = alto;
         this.ancho = ancho;
@@ -23,7 +23,7 @@ class Tablero extends Figura {
         
     }
   
-    agregarFicha(ficha,x,y,bitacora){
+    agregarFicha(ficha,x,y,bitacora , interval){
       
         let rangoCol = (this.ancho / this.cantCol);
         let rangoFil = (this.alto / this.cantFil);
@@ -39,7 +39,11 @@ class Tablero extends Figura {
             bitacora.agregarJugada(fila,columna,ficha.getJugador());
         }
         
-        bitacora.juegoTerminado(columna,fila);
+        if (bitacora.juegoTerminado(columna,fila)){
+            alert ("Ganador :" + ficha.jugador);
+            clearInterval(interval);
+
+        };
 
         
         
