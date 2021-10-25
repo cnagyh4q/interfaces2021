@@ -13,6 +13,41 @@ document.addEventListener("DOMContentLoaded" , (e) =>{
 
     let paloma = document.querySelector("#paloma");
 
+    let escena = 1;
+
+    function cambioEscena(escenaActual) {
+    if (escenaActual == "1"){
+
+        document.querySelectorAll(".escena2").forEach(element => { 
+            element.style.cssText = "display: none"
+       });
+        document.querySelectorAll(".escena").forEach(element => { 
+           element.style.cssText = "display: block"
+         });
+    }else {
+        document.querySelectorAll(".escena").forEach(element => { 
+            element.style.cssText = "display: none"
+       });
+       document.querySelectorAll(".escena2").forEach(element => { 
+        element.style.cssText = "display: block"
+        });
+    }
+   
+    }
+
+    cambioEscena(escena);
+
+    document.querySelector("#selectEscena").addEventListener("change" , (e) => {
+
+        escena = e.target.value;               
+       
+        cambioEscena(escena);
+
+
+    })
+
+
+
 
     document.addEventListener("click" , ()=>{
 
@@ -24,6 +59,7 @@ document.addEventListener("DOMContentLoaded" , (e) =>{
        }
 
     })
+
 
     let tuberiaSup ;
     let tuberiaInf;
@@ -61,23 +97,24 @@ document.addEventListener("DOMContentLoaded" , (e) =>{
     },3910);
 
     let random = Math.floor(Math.random()*350);
-    console.log (random);
+    console.log (random);   
 
-    
 
-    //tuberias();
     setInterval(()=>{
 
         let birdTop = parseInt(window.getComputedStyle(paloma).getPropertyValue("top"));
         if (birdTop < 500){
-            paloma.style.top = (birdTop + 25)+"px";
+
+            paloma.style.top = (birdTop + 40)+"px";
+
             paloma.style.transform = "rotate(30deg)"
         }
         
         
 
 
-    },1000);
+    },500);
+
 
 
 
