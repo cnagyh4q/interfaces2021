@@ -12,68 +12,15 @@
   animation:aleteo 0.3s steps(3) infinite;
     /* Posicionamos el personaje sobre el camino de madera */
   position:relative;
-  left:350px;
+  left:250px;
   top:290px;
+  background-size: cover;
 
   transform: rotate(-30deg);
 
 }
 
 
-
-#tuberiaInferior{
-  
-  height:100px;
-  width: 800px;
-  /* Cómo hay establecido un tamaño, centramos con margin:auto */
-  
-  /* Cargamos el sprite (el repeat-x se puede omitir, por defecto se repite) */
-  background:url(../img/pipe.png) no-repeat;
-  background-size: 138px 100px;
-  /* Aplicamos la animación "walk": 0.8seg, 6 viñetas y repetimos infinitamente */
-  animation:movimiento 4s linear ;
-    /* Posicionamos el personaje sobre el camino de madera */
-  /*position:relative;
-  margin: auto;
-  display :block;
-  /*transform: rotate(-30deg);*/
-}
-
-#tuberiaSuperior{
-  
-  height:200px;
-  width: 800px;
-  /*width: 800px;
-  height:600px;*/ 
-    /* Cómo hay establecido un tamaño, centramos con margin:auto */
-  
-  /* Cargamos el sprite (el repeat-x se puede omitir, por defecto se repite) */
-  background:url(../img/pipeSuperior.png) no-repeat;
-  background-size: 138px 100x;
-  /*background-size: 100%;
-  /* Aplicamos la animación "walk": 0.8seg, 6 viñetas y repetimos infinitamente */
-  animation:movimiento 4s linear ;
-    /* Posicionamos el personaje sobre el camino de madera */
-  position:relative;
-  /*display: none;
-  /*transform: rotate(-30deg);*/
-}
-
-#TuberiaSupOff{
-  display : none;
-}
-#TuberiaInfOff{
-  display : none;
-}
-
-@keyframes movimiento {
-  0%{
-      background-position: 800px
-  }
-  100%{
-      background-position: -138px
-  }
-}
 
 @keyframes aleteo {
     0%{
@@ -90,6 +37,7 @@
     width: 800px;
     border: black 1px solid ;    
     position: absolute;
+    overflow: hidden;
 }
 
 
