@@ -2,12 +2,12 @@
 
 
   /* Tamaño de la viñeta individual */
-  width:92px;
-  height:64px;
+  width:60px;
+  height:42px;
   /* Cómo hay establecido un tamaño, centramos con margin:auto */
  
   /* Cargamos el sprite (el repeat-x se puede omitir, por defecto se repite) */
-  background:url(../img/bird.png) repeat-x;
+  background:url(../img/bird180x42.png) repeat-x;
   /* Aplicamos la animación "walk": 0.8seg, 6 viñetas y repetimos infinitamente */
   animation:aleteo 0.3s steps(3) infinite;
     /* Posicionamos el personaje sobre el camino de madera */
@@ -27,7 +27,7 @@
         background-position: 0
     }
     100%{
-        background-position: -276px
+        background-position: -180px
     }
 }
 

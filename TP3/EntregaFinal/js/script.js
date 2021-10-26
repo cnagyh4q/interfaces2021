@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded" , (e) =>{
 
         let birdTop = parseInt(window.getComputedStyle(paloma).getPropertyValue("top"));
        if (birdTop > 64){
-        paloma.style.top = (birdTop-100)+"px";
+        paloma.style.top = (birdTop-60)+"px";
         paloma.style.transform = "rotate(-30deg)"
 
        }
@@ -104,8 +104,11 @@ document.addEventListener("DOMContentLoaded" , (e) =>{
 
         let tuberiaInf = document.querySelector("#tuberiaInferior");
         let tuberiaInfLeft = parseInt(window.getComputedStyle(tuberiaInf).getPropertyValue("left"));
-        if ( tuberiaInfLeft > -80) {
+        let tuberiaSup = document.querySelector("#tuberiaSuperior");
+        let tuberiaSupLeft = parseInt(window.getComputedStyle(tuberiaSup).getPropertyValue("left"));
+        if ( tuberiaInfLeft > -80 && tuberiaSupLeft > -80) {
             tuberiaInf.style.left = (tuberiaInfLeft - 10)+"px";
+            tuberiaSup.style.left = (tuberiaSupLeft - 10)+"px";
         }
         else {
 
@@ -113,18 +116,45 @@ document.addEventListener("DOMContentLoaded" , (e) =>{
             tuberiaInf.style.height = random + "px";
             tuberiaInf.style.left = 800 + random +"px";
 
+            let completPantalla = 420-random;  //Definimos el 450 por que el Heigth donde mostramos de la tuberia tiene 600 y dejamos 180 de "pasada" para el pajaro
+            tuberiaSup.style.height = completPantalla+"px";
+            tuberiaSup.style.left = 800 + random +"px";
+
+
+
         }
 
 
     }, 100)
 
 
+
+    /*
+    setInterval(()=>{
+
+        let tuberiaSup = document.querySelector("#tuberiaSuperior");
+        let tuberiaSupLeft = parseInt(window.getComputedStyle(tuberiaSup).getPropertyValue("left"));
+        if ( tuberiaSupLeft > -80) {
+            tuberiaSup.style.left = (tuberiaSupLeft - 10)+"px";
+        }
+        else {
+
+            let random = Math.floor(Math.random()*400);
+            tuberiaSup.style.height = random + "px";
+            tuberiaSup.style.left = 800 + random +"px";
+
+        }
+
+
+    }, 100)
+    */
+
     setInterval(()=>{
 
         let birdTop = parseInt(window.getComputedStyle(paloma).getPropertyValue("top"));
         if (birdTop < 500){
 
-            paloma.style.top = (birdTop + 40)+"px";
+            paloma.style.top = (birdTop + 30)+"px";
 
             paloma.style.transform = "rotate(30deg)"
         }     
