@@ -11,7 +11,10 @@
 
 document.addEventListener("DOMContentLoaded" , (e) =>{
 
-    let paloma = document.querySelector("#paloma");
+    let paloma = new avatar("#paloma" , "./img/bird180x42.png");
+    let tuberia = new obstaculo(1 , "./img/pipe.png");
+    let tuberia2;
+    
 
     let escena = 1;
 
@@ -51,121 +54,96 @@ document.addEventListener("DOMContentLoaded" , (e) =>{
 
     document.addEventListener("click" , ()=>{
 
-        let birdTop = parseInt(window.getComputedStyle(paloma).getPropertyValue("top"));
+        let birdTop = paloma.getPosY();
+        
+        
        if (birdTop > 64){
-        paloma.style.top = (birdTop-60)+"px";
-        paloma.style.transform = "rotate(-30deg)"
+
+        paloma.setPosY(birdTop-60);
+        paloma.rotateImage(-30);
+        
 
        }
 
+       paloma.update()
     })
 
 
-    let tuberiaSup ;
-    let tuberiaInf;
-    
-//    setInterval(()=>{
+ 
+
+ 
+
+
+    setInterval(()=>{
+
+     
         
+       if (tuberia != null){
+        if ( tuberia.getPosX() > -80 ) {         
+            tuberia.setPosX(tuberia.getPosX()-10)
+            if (paloma.getPosX() > tuberia.getPosX() && tuberia2 == null){
+                tuberia2 = new obstaculo(2 , "./img/pipe.png");
+            }
+            tuberia.update();
+
+        } else {
+            tuberia.terminar(); 
+            tuberia= null;          
+
+        }
+       
         
-//         //tuberiaInf.setAttribute("id", "tuberiaInferior");
-//         //tuberiaSup.setAttribute("id", "tuberiaSuperior");
-//         tuberiaSup = document.querySelector("#tuberiaSuperior");
-//         tuberiaInf = document.querySelector("#tuberiaInferior");
-//         tuberiaInf.setAttribute("id", "TuberiaInfOff");
-//         tuberiaSup.setAttribute("id", "TuberiaSupOff");
-//         //tuberiaSup = document.querySelector("#TuberiaSupOff");
-//         //tuberiaInf = document.querySelector("#TuberiaInfOff");
+        }
 
-//     },3900);
+        
+       
+
+        if (tuberia2 != null){
+            if ( tuberia2.getPosX() > -80 ) {         
+                tuberia2.setPosX(tuberia2.getPosX()-10)
+                if (paloma.getPosX() > tuberia2.getPosX() && tuberia == null){
+                    tuberia = new obstaculo(1 , "./img/pipe.png");
+                }
     
     
-//     setInterval(()=>{
+              tuberia2.update();
+    
+            } else {
+                tuberia2.terminar();
+                tuberia2= null; 
+                
+    
+            }
+           
 
-//         let tuberiaSup = document.querySelector("#TuberiaSupOff");
-//         let tuberiaInf = document.querySelector("#TuberiaInfOff");
-//        /* let random = Math.floor(Math.random()*350);
-//         console.log (random);*/
-//         tuberiaInf.setAttribute("id", "tuberiaInferior");
-//         tuberiaSup.setAttribute("id", "tuberiaSuperior");
-//         /*let ranpix = 600-random;
-//         ranpix=ranpix+"px";
-//         tuberiaSup.style.height= random+"px";
-//         let back="background-size: 138px "+ranpix;
-//         tuberiaSup.setAttribute("style",back);*/
+        }
+        
+    
 
 
-//     },3910);
+    }, 50)
 
-    let random = Math.floor(Math.random()*350);
-    console.log (random);   
 
+  
 
     setInterval(()=>{
 
-        let tuberiaInf = document.querySelector("#tuberiaInferior");
-        let tuberiaInfLeft = parseInt(window.getComputedStyle(tuberiaInf).getPropertyValue("left"));
-        let tuberiaSup = document.querySelector("#tuberiaSuperior");
-        let tuberiaSupLeft = parseInt(window.getComputedStyle(tuberiaSup).getPropertyValue("left"));
-        if ( tuberiaInfLeft > -80 && tuberiaSupLeft > -80) {
-            tuberiaInf.style.left = (tuberiaInfLeft - 10)+"px";
-            tuberiaSup.style.left = (tuberiaSupLeft - 10)+"px";
-        }
-        else {
-
-            let random = Math.floor(Math.random()*400);
-            tuberiaInf.style.height = random + "px";
-            tuberiaInf.style.left = 800 + random +"px";
-
-            let completPantalla = 420-random;  //Definimos el 450 por que el Heigth donde mostramos de la tuberia tiene 600 y dejamos 180 de "pasada" para el pajaro
-            tuberiaSup.style.height = completPantalla+"px";
-            tuberiaSup.style.left = 800 + random +"px";
-
-
-
-        }
-
-
-    }, 100)
-
-
-
-    /*
-    setInterval(()=>{
-
-        let tuberiaSup = document.querySelector("#tuberiaSuperior");
-        let tuberiaSupLeft = parseInt(window.getComputedStyle(tuberiaSup).getPropertyValue("left"));
-        if ( tuberiaSupLeft > -80) {
-            tuberiaSup.style.left = (tuberiaSupLeft - 10)+"px";
-        }
-        else {
-
-            let random = Math.floor(Math.random()*400);
-            tuberiaSup.style.height = random + "px";
-            tuberiaSup.style.left = 800 + random +"px";
-
-        }
-
-
-    }, 100)
-    */
-
-    setInterval(()=>{
-
-        let birdTop = parseInt(window.getComputedStyle(paloma).getPropertyValue("top"));
+        let birdTop = paloma.getPosY();
         if (birdTop < 500){
 
-            paloma.style.top = (birdTop + 30)+"px";
+            paloma.setPosY((birdTop + 30));
 
-            paloma.style.transform = "rotate(30deg)"
+            paloma.rotateImage(30);
         }     
+
+        paloma.update();
         
 
 
     },200);
 
 
-
-
+       //this.paloma.style.cssText = "background: url('"+imagen+"')";
 
   
     
