@@ -8,7 +8,8 @@ class avatar {
         this.posY = parseInt(window.getComputedStyle(this.element).getPropertyValue("top"));
         this.imagen = imagen;
         this.element.style.background= "url('"+this.imagen+"')";
-
+        this.ancho = parseInt(window.getComputedStyle(this.element).getPropertyValue("width")); 
+        this.alto = parseInt(window.getComputedStyle(this.element).getPropertyValue("height"));
 
     }
 
@@ -16,6 +17,14 @@ class avatar {
         this.imagen = imagen;
         this.element.style.background= "url('"+this.imagen+"')";
         
+    }
+
+    getAlto(){
+        return this.alto;
+    }
+
+    getAncho(){
+        return this.ancho;
     }
     
     setPosY(posY){
