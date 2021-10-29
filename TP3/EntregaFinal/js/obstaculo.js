@@ -31,12 +31,14 @@ class obstaculo {
         this.elementSup.style.left = this.posX +"px";
 
 
-
+        
 
         this.contendor= document.querySelector("#subcontent");
         this.contendor.appendChild(this.elementSup);
         this.contendor.appendChild(this.elementInf);
 
+
+        this.ancho = parseInt(window.getComputedStyle(this.elementInf).getPropertyValue("width")); 
        
 
     }
@@ -61,6 +63,10 @@ class obstaculo {
         
     }
     
+    getAncho(){
+        return this.ancho;
+    }
+
     setPosY(posY){
         this.posY = posY;
     }
