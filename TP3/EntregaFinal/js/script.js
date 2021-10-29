@@ -53,19 +53,22 @@ document.addEventListener("DOMContentLoaded" , (e) =>{
 
     document.addEventListener("click" , ()=>{
 
+        juego.setJuegoEmpezado();
         juego.setEnvent("pressClick");
+        
+        console.log("Boton DOM Click");
 
     
     })
 
-
+/*
     document.addEventListener("dblclick" , ()=>{
 
         juego.setEnvent("dobleClick");
-
+        console.log("DOBLE CLICK Click");
     
     })
-    
+  */  
 
    
      juego.iniciar();
