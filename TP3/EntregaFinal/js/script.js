@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded" , (e) =>{
     let paloma = new avatar("#paloma" , "./img/bird180x42.png");
     let tuberia = new obstaculo(1 , "./img/pipe.png");
     let tuberia2;
+    let pressClick = false;
+    let puntaje=0;
     
 
     let escena = 1;
@@ -54,19 +56,19 @@ document.addEventListener("DOMContentLoaded" , (e) =>{
 
     document.addEventListener("click" , ()=>{
 
-        let birdTop = paloma.getPosY();
-        
-        
-       if (birdTop > 64){
+        pressClick = "pressClick";
 
-        paloma.setPosY(birdTop-60);
-        paloma.rotateImage(-30);
-        
-
-       }
-
-       paloma.update()
+    
     })
+
+
+    document.addEventListener("dblclick" , ()=>{
+
+        pressClick = "dobleClick";
+
+    
+    })
+    
 
 
  
@@ -77,6 +79,57 @@ document.addEventListener("DOMContentLoaded" , (e) =>{
     setInterval(()=>{
 
      
+
+        let birdTop = paloma.getPosY();
+      
+        switch (pressClick) {
+
+            case  "pressClick" : {               
+                if (paloma.getPosY() > 0 + paloma.getAlto()) {             
+                    paloma.setPosY(birdTop-25);
+                    paloma.rotateImage(-30);
+                    setTimeout(()=>{pressClick = false; paloma.rotateImage(0); }, 100);
+                }
+
+                break;
+
+            }
+            
+            case  "dobleClick" : {
+                console.log("dobleClick");
+                if (paloma.getPosY() > 0 + paloma.getAlto()) {             
+                    paloma.setPosY(birdTop-40);
+                    paloma.rotateImage(-30);
+                    setTimeout(()=>{pressClick = false; paloma.rotateImage(0); }, 100);
+                }
+
+                break;
+
+            } 
+
+            default: {
+
+                if (birdTop < 550){
+
+                    paloma.setPosY((birdTop + 20));
+        
+                    paloma.rotateImage(60);
+                }
+                else {
+                    console.log("morir")
+                     //finalizarJuego()
+                }
+
+                break;
+            }
+
+
+        }
+              
+
+        paloma.update();
+        
+        
         
        if (tuberia != null){
         if ( tuberia.getPosX() > -80 ) {         
@@ -88,7 +141,8 @@ document.addEventListener("DOMContentLoaded" , (e) =>{
 
         } else {
             tuberia.terminar(); 
-            tuberia= null;          
+            tuberia= null; 
+            puntaje++;         
 
         }
        
@@ -111,39 +165,27 @@ document.addEventListener("DOMContentLoaded" , (e) =>{
             } else {
                 tuberia2.terminar();
                 tuberia2= null; 
+                puntaje++;
                 
     
             }
            
 
         }
+
+        if (tuberia!=null && ((paloma.getPosX() + paloma.getAncho()) >= tuberia.getPosX()) )
+          if (paloma.getPosY() + paloma.getAlto() < tuberia.getLimiteInf() && paloma.getPosY() > tuberia.getLimiteSup()){
+                //console.log("puntaje: "+ puntaje);
+          }else {
+              //console.log("chocaste")
+              //finalizarJuego()
+          }
         
     
 
 
     }, 50)
 
-
-  
-
-    setInterval(()=>{
-
-        let birdTop = paloma.getPosY();
-        if (birdTop < 500){
-
-            paloma.setPosY((birdTop + 30));
-
-            paloma.rotateImage(30);
-        }     
-
-        paloma.update();
-        
-
-
-    },200);
-
-
-       //this.paloma.style.cssText = "background: url('"+imagen+"')";
 
   
     
