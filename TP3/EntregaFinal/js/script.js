@@ -11,12 +11,9 @@
 
 document.addEventListener("DOMContentLoaded" , (e) =>{
 
-    let paloma = new avatar("#paloma" , "./img/bird180x42.png");
-    let tuberia = new obstaculo(1 , "./img/pipe.png");
-    let tuberia2;
-    let pressClick = false;
-    let puntaje=0;
     
+    
+    let juego = new game();   
 
     let escena = 1;
 
@@ -56,7 +53,7 @@ document.addEventListener("DOMContentLoaded" , (e) =>{
 
     document.addEventListener("click" , ()=>{
 
-        pressClick = "pressClick";
+        juego.setEnvent("pressClick");
 
     
     })
@@ -64,130 +61,26 @@ document.addEventListener("DOMContentLoaded" , (e) =>{
 
     document.addEventListener("dblclick" , ()=>{
 
-        pressClick = "dobleClick";
+        juego.setEnvent("dobleClick");
 
     
     })
     
 
+   
+     juego.iniciar();
+
+     setInterval(()=>{
+         document.querySelector("#puntaje").innerHTML= juego.getPuntaje();
+     } , 1000)
+   
+
+    
+    
+    
 
  
-
  
-
-
-    setInterval(()=>{
-
-     
-
-        let birdTop = paloma.getPosY();
-      
-        switch (pressClick) {
-
-            case  "pressClick" : {               
-                if (paloma.getPosY() > 0 + paloma.getAlto()) {             
-                    paloma.setPosY(birdTop-25);
-                    paloma.rotateImage(-30);
-                    setTimeout(()=>{pressClick = false; paloma.rotateImage(0); }, 100);
-                }
-
-                break;
-
-            }
-            
-            case  "dobleClick" : {
-                console.log("dobleClick");
-                if (paloma.getPosY() > 0 + paloma.getAlto()) {             
-                    paloma.setPosY(birdTop-40);
-                    paloma.rotateImage(-30);
-                    setTimeout(()=>{pressClick = false; paloma.rotateImage(0); }, 100);
-                }
-
-                break;
-
-            } 
-
-            default: {
-
-                if (birdTop < 550){
-
-                    paloma.setPosY((birdTop + 20));
-        
-                    paloma.rotateImage(60);
-                }
-                else {
-                    console.log("morir")
-                     //finalizarJuego()
-                }
-
-                break;
-            }
-
-
-        }
-              
-
-        paloma.update();
-        
-        
-        
-       if (tuberia != null){
-        if ( tuberia.getPosX() > -80 ) {         
-            tuberia.setPosX(tuberia.getPosX()-10)
-            if (paloma.getPosX() > tuberia.getPosX() && tuberia2 == null){
-                tuberia2 = new obstaculo(2 , "./img/pipe.png");
-            }
-            tuberia.update();
-
-        } else {
-            tuberia.terminar(); 
-            tuberia= null; 
-            puntaje++;         
-
-        }
-       
-        
-        }
-
-        
-       
-
-        if (tuberia2 != null){
-            if ( tuberia2.getPosX() > -80 ) {         
-                tuberia2.setPosX(tuberia2.getPosX()-10)
-                if (paloma.getPosX() > tuberia2.getPosX() && tuberia == null){
-                    tuberia = new obstaculo(1 , "./img/pipe.png");
-                }
-    
-    
-              tuberia2.update();
-    
-            } else {
-                tuberia2.terminar();
-                tuberia2= null; 
-                puntaje++;
-                
-    
-            }
-           
-
-        }
-
-        if (tuberia!=null && ((paloma.getPosX() + paloma.getAncho()) >= tuberia.getPosX()) )
-          if (paloma.getPosY() + paloma.getAlto() < tuberia.getLimiteInf() && paloma.getPosY() > tuberia.getLimiteSup()){
-                //console.log("puntaje: "+ puntaje);
-          }else {
-              //console.log("chocaste")
-              //finalizarJuego()
-          }
-        
-    
-
-
-    }, 50)
-
-
-  
     
 
 

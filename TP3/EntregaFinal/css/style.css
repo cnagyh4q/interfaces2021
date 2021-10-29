@@ -1,23 +1,20 @@
-#paloma {
+.avatar {
 
-
-  /* Tamaño de la viñeta individual */
   width:60px;
   height:42px;
-  /* Cómo hay establecido un tamaño, centramos con margin:auto */
- 
-  /* Cargamos el sprite (el repeat-x se puede omitir, por defecto se repite) */
+
   background:url(../img/bird180x42.png) repeat-x;
-  /* Aplicamos la animación "walk": 0.8seg, 6 viñetas y repetimos infinitamente */
-  animation:aleteo 0.3s steps(3) infinite;
-    /* Posicionamos el personaje sobre el camino de madera */
+
   position:relative;
   left:250px;
   top:290px;
   background-size: cover;
+ 
 
-  transform: rotate(-30deg);
+}
 
+.vivo {
+    animation:aleteo 0.3s steps(3) infinite;
 }
 
 
