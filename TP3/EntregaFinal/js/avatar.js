@@ -53,8 +53,9 @@ class avatar {
     }
 
     terminar(){
-        //this.element.style.top = this.posY;
+        this.element.style="";
         this.element.classList.remove('vivo');
+        this.element.classList.add('muerto');
     }
     
     

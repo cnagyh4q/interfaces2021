@@ -9,6 +9,7 @@
   left:250px;
   top:290px;
   background-size: cover;
+  z-index: 1;
  
 
 }
@@ -17,6 +18,27 @@
     animation:aleteo 0.3s steps(3) infinite;
 }
 
+
+.muerto {
+     animation:morir 0.3s steps(100) forwards;
+}
+
+
+@keyframes morir {
+    0%{
+        transform: rotate(0deg);
+    }
+    99%{
+        transform:rotate(90deg);
+        top:550px;
+    }
+    100%{
+        top:533px;
+        height:67px;
+        background-image: url(../img/BirdDie-60x67.png);
+        background-size: cover;
+    }
+}
 
 
 @keyframes aleteo {
