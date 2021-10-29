@@ -54,6 +54,7 @@ class avatar {
 
     terminar(){
         //this.element.style.top = this.posY;
+        this.element.classList.remove('vivo');
     }
     
     
