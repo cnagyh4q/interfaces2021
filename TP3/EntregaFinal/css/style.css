@@ -1,3 +1,30 @@
+
+body{
+    margin: 1rem;
+}
+
+.selecEscena {
+    height:600px;
+    width: 800px;
+}
+
+.game{
+    display: flex;
+    justify-content: center;
+}
+
+.puntaje{
+
+    position: absolute;
+    z-index: 1;
+    text-align: right;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+
+
+}
+
 .avatar {
 
   width:60px;
