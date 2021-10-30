@@ -1,0 +1,252 @@
+
+body{
+    margin: 1rem;
+}
+
+.selecEscena {
+    height:600px;
+    width: 800px;
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+}
+
+
+.resaltado {
+
+
+   box-shadow: 5px 10px #888888;
+
+}
+.botonera{
+    position: relative;
+    top:10px;
+    left:550px;
+}
+
+.botonera > button{
+    margin:0 1rem;
+}
+
+
+.puntaje{
+
+    position: absolute;
+    z-index: 1;
+    text-align: right;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+
+
+}
+
+#selectEscenaConImagen {
+     width: 299px;
+}
+
+#escena1{
+    width: 100px;
+    height: 100px;
+    top:0;
+    left: 0;
+    background-size: cover;
+    background-image : url(../img/1920x1080.png);
+    margin:1rem 1rem; 
+    display: inline-block;
+
+}
+
+#escena2{
+    width: 100px;
+    height: 100px;
+    top: 100px;
+  
+    background-size: cover;
+
+    background-image: url(../img/1920x1080-2.png);
+    margin:1rem 1rem;
+    display: inline-block;
+}
+
+.avatar {
+
+  width:60px;
+  height:42px;
+
+  background:url(../img/bird180x42.png) repeat-x;
+
+  position:relative;
+  left:250px;
+  top:290px;
+  background-size: cover;
+  z-index: 1;
+ 
+
+}
+
+.vivo {
+    animation:aleteo 0.3s steps(3) infinite;
+}
+
+
+.muerto {
+     animation:morir 0.3s steps(100) forwards;
+}
+
+
+@keyframes morir {
+    0%{
+        transform: rotate(0deg);
+    }
+    99%{
+        transform:rotate(90deg);
+        top:550px;
+    }
+    100%{
+        top:533px;
+        height:67px;
+        background-image: url(../img/BirdDie-60x67.png);
+        background-size: cover;
+    }
+}
+
+
+@keyframes aleteo {
+    0%{
+        background-position: 0
+    }
+    100%{
+        background-position: -180px
+    }
+}
+
+
+.contenedor{
+    height:600px;
+    width: 800px;
+    border: black 1px solid ;    
+    position: absolute;
+    overflow: hidden;
+}
+
+
+
+@keyframes scroll {
+    0%{
+        background-position: 0
+    }
+    100%{
+        background-position: -1920px
+    }
+}
+
+
+.escena {
+    width: 100%;
+    height: 100%;
+    top:0;
+    left: 0;
+    background-size: cover;
+    position: absolute;
+    display: none;
+}
+
+.layer1{
+    background-image: url("../img/layers/01/layer_01_1920\ x\ 1080.png");
+    animation: scroll 40s infinite linear;    
+
+}
+
+.layer2{
+    background-image: url("../img/layers/01/layer_02_1920\ x\ 1080.png");
+    animation: scroll 30s infinite linear;    
+
+}
+
+
+.layer3{
+    background-image: url("../img/layers/01/layer_03_1920\ x\ 1080.png");
+    animation: scroll 20s infinite linear;    
+
+}
+
+.layer4{
+    background-image: url("../img/layers/01/layer_04_1920\ x\ 1080.png");
+    animation: scroll 10s infinite linear;    
+
+}
+
+
+.layer5{
+    background-image: url("../img/layers/01/layer_05_1920\ x\ 1080.png");
+    animation: scroll 4s infinite linear;    
+
+
+}
+
+
+
+.escena2 {
+    width: 100%;
+    height: 100%;
+    top:0;
+    left: 0;
+    background-size: cover;
+    position: absolute;
+   
+}
+
+.layer1-2{
+    background-image: url("../img/layers/02/layer_08_1920\ x\ 1080.png");
+    animation: scroll 30s infinite linear;    
+
+}
+
+.layer2-2{
+    background-image: url("../img/layers/02/layer_07_1920\ x\ 1080.png");
+    animation: scroll 52s infinite linear;    
+
+}
+
+
+.layer3-2{
+    background-image: url("../img/layers/02/layer_06_1920\ x\ 1080.png");
+    animation: scroll 44s infinite linear;    
+
+}
+
+.layer4-2{
+    background-image: url("../img/layers/02/layer_05_1920\ x\ 1080.png");
+    animation: scroll 34s infinite linear;    
+
+}
+
+
+.layer5-2{
+    background-image: url("../img/layers/02/layer_04_1920\ x\ 1080.png");
+    animation: scroll 22s infinite linear;    
+
+}
+
+.layer6-2{
+    background-image: url("../img/layers/02/layer_03_1920\ x\ 1080.png");
+    animation: scroll 14s infinite linear;    
+
+}
+
+.layer7-2{
+    background-image: url("../img/layers/02/layer_02_1920\ x\ 1080.png");
+    animation: scroll 6s infinite linear;    
+
+}
+
+.layer8-2{
+    background-image: url("../img/layers/02/layer_01_1920\ x\ 1080.png");
+    animation: scroll 6s infinite linear;    
+
+}
+
+

@@ -1,0 +1,33 @@
+.tuberiaInferior{
+    
+    height: 220px;
+    width: 80px;
+    background: url(../img/pipe.png) no-repeat;
+    background-size: cover;
+    position: absolute;
+    left: 800px;
+    bottom: 0px;
+   
+
+
+}
+  
+.tuberiaSuperior{    
+    height:200px;
+    width: 80px;    
+    background:url(../img/pipe.png) no-repeat;
+    transform: rotate(180deg);
+    background-size: cover;
+    left: 800px;
+    position:absolute;
+    top:0px;
+
+}
+  
+#TuberiaSupOff{
+    display : none;
+}
+#TuberiaInfOff{
+    display : none;
+}
+  
