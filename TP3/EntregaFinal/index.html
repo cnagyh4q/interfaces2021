@@ -41,13 +41,31 @@
   
 
 
-    <select id="selectEscena">
+    <!-- <select id="selectEscena">
       <option value="1" selected="selected">1</option>
       <option value="2">2</option>
-    </select>
-    
+    </select> -->
 
-    <div class="game">
+
+
+
+    <h6>      
+      Bienvenido a "Esquivando Tuberias" juego basado en el famoso y conocido Flappy Bird (https://flappybird.io/).
+Este juego es muy sencillo conciste en hacer volar el pajaro de tal forma que no se choque con los obstaculos del juego, que en este caso son tuberias,
+luego de esto uno se preguntaria.. como hago esto, pues es muy sencillo, como primera instancia hay que seleccionar el escenario de nuestra ave, Clickeamos en "Iniciar Juego",
+el juego comenzo !! entonces es hora de apretar el boton del M
+ouse para que el pajaro levante vuelo y no caiga por la gravedad. Recorda que hay que esquivar los obstaculos!!
+    </h6>
+    
+    <div id="selectEscenaConImagen">
+      <h6 class="text-center">Seleccione escena</h6>
+      <div id="escena1" class="resaltado"></div>
+      <div id="escena2"></div>
+    </div>
+
+   
+
+    <div >
 
       <div class="contenedor">
         <p class="puntaje">Puntaje: <span id="puntaje">0</span></p>
@@ -74,12 +92,19 @@
       
         
     </div>
+    <div class="botonera" >
+      <button type="button" id="btn-iniciar" class="btn btn-success">Iniciar</button>
+      <button type="button" id="btn-reiniciar" class="btn btn-danger">Reiniciar</button>
+    </div>   
+    
+
+  
     
     
 
     </div>
-    <button type="button" class="btn btn-success">Iniciar</button>
-    <button type="button" class="btn btn-danger">Reiniciar</button>
+   
+   
     
 
     <script src="./js/avatar.js"></script>

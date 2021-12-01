@@ -15,8 +15,7 @@ class game {
         
         }
 
-        setJuegoEmpezado(){
-            //console.log("Dentro del juegoEmpezado event");
+        setJuegoEmpezado(){         
             this.empezarJuego=true;
         }
         getPuntaje(){
@@ -26,7 +25,7 @@ class game {
 
         setEnvent(event){
             this.event = event;
-            //console.log("Dentro del setEvent event : "+this.event);
+          
 
         }
 
@@ -94,82 +93,17 @@ class game {
                         this.moverObstaculo2();
                     }
                 }
-                /*
-                if (this.obstaculo != null && this.empezarJuego){
-                if ( this.obstaculo.getPosX() > -80 ) {         
-                    this.obstaculo.setPosX(this.obstaculo.getPosX()-10)
-                    if (this.avatar.getPosX() > this.obstaculo.getPosX() && this.obstaculo2 == null){
-                        this.puntaje++;
-                        this.obstaculo2 = new obstaculo(2 , "./img/pipe.png");
-                    }
-                    this.obstaculo.update();
-        
-                } else {
-                    this.obstaculo.terminar(); 
-                    this.obstaculo= null; 
-                           
-        
-                }
-               
                 
-                }
-        
-                
-               
-        
-                if (this.obstaculo2 != null && this.empezarJuego){
-                    if ( this.obstaculo2.getPosX() > -80 ) {         
-                        this.obstaculo2.setPosX(this.obstaculo2.getPosX()-10)
-                        if (this.avatar.getPosX() > this.obstaculo2.getPosX() && this.obstaculo == null){
-                            this.puntaje++;
-                            this.obstaculo = new obstaculo(1 , "./img/pipe.png");
-                        }
-            
-            
-                      this.obstaculo2.update();
-            
-                    } else {
-                        this.obstaculo2.terminar();
-                        this.obstaculo2= null; 
-                        
-                        
-            
-                    }
-                   
-        
-                }
-                
-                */
                 this.chocoObstaculo(this.obstaculo);
                 this.chocoObstaculo(this.obstaculo2);
-                /*
-                if (this.obstaculo!=null && ((this.avatar.getPosX() + this.avatar.getAncho()) >= this.obstaculo.getPosX()) && !(this.avatar.getPosX() > this.obstaculo.getPosX()) )
-                  if (!(this.avatar.getPosY() + this.avatar.getAlto() < this.obstaculo.getLimiteInf() && this.avatar.getPosY() > this.obstaculo.getLimiteSup())){
-                      
-                        this.terminar();
-                  }else {
-                      //if (this.obstaculo.getPosX() == 0){
-                       // this.puntaje++;
-                      //}
-                    
-                                   
-                  }
-                  if (this.obstaculo2!=null && ((this.avatar.getPosX() + this.avatar.getAncho()) >= this.obstaculo2.getPosX()) && !(this.avatar.getPosX() > this.obstaculo2.getPosX()) )
-                  if (!(this.avatar.getPosY() + this.avatar.getAlto() < this.obstaculo2.getLimiteInf() && this.avatar.getPosY() > this.obstaculo2.getLimiteSup())){
-                      
-                        this.terminar();
-                  }else {
-                    //this.puntaje++;
-                                   
-                  }
-                */
+            
                   this.avatar.update();
         }
 
         terminar () {
             this.avatar.terminar();
             clearInterval(this.interval);
-            //alert("Perdiste");
+            
            
         }
 
@@ -181,7 +115,7 @@ class game {
             }
         }
 
-        //moverObstaculo(tuberia,tuberia2){
+     
         moverObstaculo1(){
             if (this.obstaculo != null ){
                 if ( this.obstaculo.getPosX() > -80 ) {         
@@ -201,24 +135,7 @@ class game {
                
                 
             }
-            /*
-            if (tuberia != null ){
-                if ( tuberia.getPosX() > -80 ) {         
-                    tuberia.setPosX(tuberia.getPosX()-10)
-                    if (this.avatar.getPosX() > tuberia.getPosX() && tuberia2 == null){
-                        this.puntaje++;
-                        tuberia2 = new obstaculo(2 , "./img/pipe.png");
-                    }
-                    tuberia.update();
-        
-                } else {
-                    tuberia.terminar(); 
-                    tuberia= null; 
-                           
-        
-                }
-            }
-            */
+         
         }   
 
         moverObstaculo2(){
@@ -242,6 +159,23 @@ class game {
         
                 }
             }
+        }
+
+
+        reiniciarJuego(){
+            this.avatar.reiniciar();
+            this.puntaje= 0;
+            this.empezarJuego = false;
+            if (this.obstaculo != null) {
+                this.obstaculo.terminar();
+                this.obstaculo = null;   
+                this.obstaculo = new obstaculo(1 , "./img/pipe.png");
+            }
+            if (this.obstaculo2 != null ) {
+                this.obstaculo2.terminar();
+                this.obstaculo2 = null;
+            }
+            
         }
 
 

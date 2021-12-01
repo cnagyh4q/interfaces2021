@@ -8,10 +8,28 @@ body{
     width: 800px;
 }
 
-.game{
+.center{
     display: flex;
     justify-content: center;
 }
+
+
+.resaltado {
+
+
+   box-shadow: 5px 10px #888888;
+
+}
+.botonera{
+    position: relative;
+    top:10px;
+    left:550px;
+}
+
+.botonera > button{
+    margin:0 1rem;
+}
+
 
 .puntaje{
 
@@ -23,6 +41,34 @@ body{
     font-weight: bold;
 
 
+}
+
+#selectEscenaConImagen {
+     width: 299px;
+}
+
+#escena1{
+    width: 100px;
+    height: 100px;
+    top:0;
+    left: 0;
+    background-size: cover;
+    background-image : url(../img/1920x1080.png);
+    margin:1rem 1rem; 
+    display: inline-block;
+
+}
+
+#escena2{
+    width: 100px;
+    height: 100px;
+    top: 100px;
+  
+    background-size: cover;
+
+    background-image: url(../img/1920x1080-2.png);
+    margin:1rem 1rem;
+    display: inline-block;
 }
 
 .avatar {

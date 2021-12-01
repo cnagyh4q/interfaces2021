@@ -57,6 +57,12 @@ class avatar {
         this.element.classList.remove('vivo');
         this.element.classList.add('muerto');
     }
+
+    reiniciar(){
+        this.element.style="";
+        this.element.classList.add('vivo');
+        this.element.classList.remove('muerto');
+    }
     
     
 
