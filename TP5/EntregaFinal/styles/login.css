@@ -1,0 +1,42 @@
+
+
+
+body , html {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+.conteiner-login {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 70vw;
+    height: 70vh;
+    align-items: center;
+
+}
+
+.header-login {
+    display: flex;
+    align-items: center;
+    margin: 10vh 0;
+
+}
+
+h2 {
+    margin:0 10px;
+}
+
+.btn-login {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10vh 0;
+    flex-direction: row;
+}
