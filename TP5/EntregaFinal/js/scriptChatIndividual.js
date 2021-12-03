@@ -8,7 +8,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
     function closeChatIndividual (){
        
         window.location.href="listChat.html";
-        document.querySelector("#load").classList.remove("visible");
-        document.querySelector("#load").classList.add("oculto");
     }
 });

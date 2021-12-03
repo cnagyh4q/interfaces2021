@@ -116,6 +116,16 @@ document.addEventListener('DOMContentLoaded', (e) => {
         
 
 
+        document.querySelector("#closeSearch").addEventListener("click",closeChatSearch);
 
+        document.querySelector("#botonHome").addEventListener("click",closeChatSearch);
+    
+    function closeChatSearch (){
+       
+        window.location.href="index.html";
+        /*
+        document.querySelector("#load").classList.remove("visible");
+        document.querySelector("#load").classList.add("oculto");*/
+    }
 
 });
