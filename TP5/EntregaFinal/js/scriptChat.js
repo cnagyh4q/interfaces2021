@@ -21,4 +21,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
         document.querySelector("#load").classList.add("oculto");
     }
 
+    document.querySelector("#iconCloseChatList").addEventListener("click",closeChatGoHome);
+
+    function closeChatGoHome (){
+        window.location.href="index.html";
+    }
+
+    
+    
+
 });
