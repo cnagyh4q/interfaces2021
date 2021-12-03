@@ -57,11 +57,8 @@ img {
 
 .publicacion {
   width: 100%;
-  
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  
- 
 }
 
 .hpublicacion {
@@ -142,6 +139,11 @@ text {
   display: flex;
   align-items: center;
 }
+.icon2 {
+  font-size: 120%;
+  display: flex;
+  align-items: center;
+}
 
 .posTextChatInHeader {
   margin-left: 10px;
@@ -154,6 +156,15 @@ text {
 .posCloseChatInHeader {
   margin-right: 10px;
 }
+
+.posCloseChatInHeaderPosRow{
+  margin-right: 10px;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+ 
+}
+
 
 .searchInChat {
   margin-left: 2rem;
@@ -191,3 +202,98 @@ text {
   align-items: center;
 }
 
+.headerChat {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  font-size: 1.5rem;
+  background-color: #f7fcff;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  align-items: center;
+  justify-content: space-between;
+  
+
+}
+.fotoPerfilChat{
+  position: relative;
+  left: 1rem;
+  top: 5px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border:solid 1px;
+}
+.borderOnline{
+  border-color: green;
+}
+
+.boxDialogoEl {
+  margin-left: 0.5rem;
+  margin-right: 2rem;
+  /*width: 40%;*/
+  /*width:fit-content;*/
+  max-width: 250px;
+  height: fit-content;
+  display: flex;
+  border-radius: 0px 5px 5px 5px;;
+  align-items: center;
+  padding-left : 2%;
+  padding-top: 1%;
+  padding-bottom: 1% ;
+  background-color: #FFC4FF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.formatoHora {
+  font-size: 70%;
+  display: flex;
+  /*text-align: end;
+  
+  text-align: right;*/
+  justify-content: end;
+    margin-right: 0.5rem;
+}
+
+.formatoHoraYo {
+  display: flex;
+  font-size: 70%;
+  
+}
+
+.BoxChats {
+  font-size: 0.8rem;
+ }
+
+ .BoxChatsYo {
+   display: flex;
+   justify-content: flex-end;
+   font-size: 0.8rem;
+ }
+
+
+.textSearch {
+  /*margin-left: 1rem;*/
+  margin-right: 0.2rem;
+  font-size: 90%;
+}
+
+
+
+.boxDialogoYo {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  /*width: 40%;*/
+  /*width:fit-content;*/
+  max-width: 250px;
+  height: fit-content;
+  display: flex;
+  border-radius: 5px 0px 5px 5px;;
+  align-items: center;
+  padding-left : 2%;
+  padding-top: 1%;
+  padding-bottom: 1% ;
+  background-color: #C5CAE9;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
