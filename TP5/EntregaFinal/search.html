@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+    <script src="./js/search.js"></script>
+    <title>Search</title>
+</head>
+<body>
+
+
+    <header class="header">
+
+        <div class=search>
+            <input type="text" class="inp-search" placeholder="Buscar en SocialVet">  
+            <i class="bi bi-search icon-search"></i>       
+        </div>
+       <i id="closeSearch"class="bi bi-x cerrar"></i>
+
+    </header>
+    <nav class="filter-search">
+        <button id="btn-all" class="activo">Todo</button>
+        <button id="btn-prof">Profesionales</button>
+        <button id="btn-perf">Perfiles</button>
+        <button id="btn-publi" >Publicaciones</button>
+    </nav>
+
+    <section class="section-search">
+
+        <section id="sec-profe" class="oculto" >
+
+            <h4 class="sub-search">Profesionales</h4>
+         <article class="searchCard">
+            <img class="fotoProfileSinTop" src="./img/perfil/perfilVaron.jpg" alt="">
+            <div class="hpinfo">
+                <h4>Diego Alcorta</h4>
+                <span>Contacto</span>
+            </div>               
+        </article>
+        <article class="searchCard">
+            <img class="fotoProfileSinTop" src="./img/perfil/perfilVaronSearch1.jpg" alt="">
+            <div class="hpinfo">
+                <h4>Diego Vera</h4>
+                <span>Agregar Contacto</span>
+            </div>               
+        </article>
+            <article class="searchCard">
+            <img class="fotoProfileSinTop" src="./img/perfil/perfilVaronSearch2.jpg" alt="">
+            <div class="hpinfo">
+                <h4>Diego Trea</h4>
+                <span>Agregar Contacto</span>
+            </div>               
+            </article>
+            <article class="searchCard">
+             <img class="fotoProfileSinTop" src="./img/perfil/perfilVaronSearch3.jpg" alt="">
+            <div class="hpinfo">
+                <h4>Diego Castro</h4>
+                <span>Agregar Contacto</span>
+            </div>               
+         </article>
+
+        </section>
+
+        <section id="sec-perf" class="oculto" >
+
+        <h4 class="sub-search">Perfiles</h4>
+
+        <article class="searchCard">
+            <img class="fotoProfileSinTop" src="./img/perfil/perfilVaronSearchPerson1.jpg" alt="">
+            <div class="hpinfo">
+                <h4>Diego Rimoli</h4>
+                <span>Agregar Contacto</span>
+            </div>               
+        </article>
+        <article class="searchCard">
+            <img class="fotoProfileSinTop" src="./img/perfil/perfilVaronSearchPerson2.jpg" alt="">
+            <div class="hpinfo">
+                <h4>Diego Diaz</h4>
+                <span>Agregar Contacto</span>
+            </div>               
+        </article>
+        <article class="searchCard">
+            <img class="fotoProfileSinTop" src="./img/perfil/perfilVaronSearchPerson3.jpg" alt="">
+            <div class="hpinfo">
+                <h4>Diego Laurenz</h4>
+                <span>Agregar Contacto</span>
+            </div>               
+        </article>
+        <article class="searchCard">
+            <img class="fotoProfileSinTop" src="./img/perfil/perfilVaronSearchPerson4.jpg" alt="">
+            <div class="hpinfo">
+                <h4>Nombre Usuario</h4>
+                <span>Agregar Contacto</span>
+            </div>               
+        </article>
+
+        </section>
+        
+
+        <section id="sec-publi" class="oculto" >
+        <h4 class="sub-search">Publicaciones</h4>
+
+        <article class="publicacion">
+            <header class="hpublicacion">
+                <img class="fotoProfileSinTop" src="./img/perfil/perfilVaron.jpg" alt="">
+                <div class="hpinfo">
+                    <h4>Diego Alcorta</h4>
+                    <span>Contacto</span>
+                </div>                   
+                
+            </header>
+
+            <aside >
+                <text>
+                    Buenas tardes, quiero dejar plasmado mi agradecimiento a dos de mis colegas que siempre me dan una mano cuando lo necesito, son compañeros y nunca dicen que no cuando uno los necesita, me refiero a @Costes Laura y @Costa Pablo. Como no tengo una foto con los dos, dejo algunas fotos de nosotros trabajando.
+                </text>
+                    
+            </aside>
+        </article>
+
+
+        <article class="publicacion">
+            <header class="hpublicacion">
+                <img class="fotoProfileSinTop" src="./img/perfil/perfilVaronSearchPerson5.jpg" alt="">
+                <div class="hpinfo">
+                    <h4>Diego Torresani</h4>
+                    <span>Agregar Contacto</span>
+                </div>                   
+                
+            </header>
+
+            <aside >
+                <text>
+                    Hola a todos soy nuevo en esto, me hablaron muy bien de esta RED, espero poder estar a la altura. Saludos !!
+                </text>
+                    
+            </aside>
+        </article>
+         </section>
+
+
+
+
+    </section>
+
+
+    
+    <footer class="footer">
+
+        <i id="botonHome" class="bi bi-house-door-fill"></i>
+        <i class="bi bi-search"></i>
+        <i class="bi bi-person-fill"></i>
+
+    </footer>
+    
+</body>
+</html>
