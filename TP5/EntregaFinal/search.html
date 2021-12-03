@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+    <script src="./js/search.js"></script>
     <title>Search</title>
 </head>
 <body>
@@ -21,16 +22,18 @@
 
     </header>
     <nav class="filter-search">
-        <button>Todos</button>
-        <button>Profesionales</button>
-        <button>Perfiles</button>
-        <button>Publicaciones</button>
+        <button id="btn-all">Todos</button>
+        <button id="btn-prof">Profesionales</button>
+        <button id="btn-perf">Perfiles</button>
+        <button id="btn-publi" >Publicaciones</button>
     </nav>
 
     <section class="section-search">
 
-        <h4 class="sub-search">Profesionales</h4>
-        <article class="searchCard">
+        <section id="sec-profe" class="oculto" >
+
+            <h4 class="sub-search">Profesionales</h4>
+         <article class="searchCard">
             <img class="fotoProfileSinTop" src="./img/publicaciones/publi1.png" alt="">
             <div class="hpinfo">
                 <h4>Nombre Usuario</h4>
@@ -44,20 +47,24 @@
                 <span>12 Nov 2021 - Tandil</span>
             </div>               
         </article>
-        <article class="searchCard">
+            <article class="searchCard">
             <img class="fotoProfileSinTop" src="./img/publicaciones/publi1.png" alt="">
             <div class="hpinfo">
                 <h4>Nombre Usuario</h4>
                 <span>12 Nov 2021 - Tandil</span>
             </div>               
-        </article>
-        <article class="searchCard">
-            <img class="fotoProfileSinTop" src="./img/publicaciones/publi1.png" alt="">
+            </article>
+            <article class="searchCard">
+             <img class="fotoProfileSinTop" src="./img/publicaciones/publi1.png" alt="">
             <div class="hpinfo">
                 <h4>Nombre Usuario</h4>
                 <span>12 Nov 2021 - Tandil</span>
             </div>               
-        </article>
+         </article>
+
+        </section>
+
+        <section id="sec-perf" class="oculto" >
 
         <h4 class="sub-search">Perfiles</h4>
 
@@ -90,6 +97,10 @@
             </div>               
         </article>
 
+        </section>
+        
+
+        <section id="sec-publi" class="oculto" >
         <h4 class="sub-search">Publicaciones</h4>
 
         <article class="publicacion">
@@ -128,6 +139,7 @@
                     
             </aside>
         </article>
+         </section>
 
 
 
