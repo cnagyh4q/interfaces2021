@@ -31,6 +31,8 @@ body {
   padding: 0 10px;
 }
 
+
+
 .header-profile {
   width: 100%;
   height: 70px;
@@ -525,7 +527,7 @@ input::placeholder {
   margin:5px 0;
   background: none;
   border: none;
-  border-radius: ;
+  border-radius: 5px; /*Revisar */
 }
 
 
@@ -555,4 +557,12 @@ input::placeholder {
 
 .filter-search .activo {
   font-weight: bold;
+}
+
+.colorLike{
+  color  : #0d6efd;
+}
+
+.colorDiskLike{
+  color  : rgb(73, 3, 73);
 }
