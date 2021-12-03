@@ -63,9 +63,10 @@ img {
   padding-top: 1.5%;
   width: 75%;
   height: 45px;
-  border-radius: 5%;
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
 }
 
 .editProfile {
@@ -118,6 +119,7 @@ img {
   width: 100%;
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 10px 0;
 }
 
 .hpublicacion {
@@ -479,6 +481,7 @@ input::placeholder {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  z-index: 2;
 }
 .visible{
   display: flex;
@@ -529,8 +532,7 @@ input::placeholder {
 .filter-search button {
   margin:5px 0;
   background: none;
-  border: none;
-  border-radius: 5px; /*Revisar */
+  border: none; 
 }
 
 
@@ -560,6 +562,7 @@ input::placeholder {
 
 .filter-search .activo {
   font-weight: bold;
+  border-bottom: 2px solid black;
 }
 
 .colorLike{

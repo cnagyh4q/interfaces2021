@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.querySelector("#iconCloseChatList").addEventListener("click",closeChatGoHome);
 
     function closeChatGoHome (){
-        window.location.href="index.html";
+        window.location.href="muro.html";
     }
 
     

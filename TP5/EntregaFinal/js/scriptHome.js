@@ -66,6 +66,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
 
+    document.querySelector("#botonComentar").addEventListener("click",()=>{
+
+        setTimeout(()=>{
+            document.querySelector("#load").classList.remove("visible");
+            document.querySelector("#load").classList.add("oculto");
+            window.location.href="comentar.html";
+        },2000);
+
+        
+
+    });
+
+
 });
 
 

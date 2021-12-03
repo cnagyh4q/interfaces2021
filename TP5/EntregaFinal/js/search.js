@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
     
     function closeChatSearch (){
        
-        window.location.href="index.html";
+        window.location.href="muro.html";
         /*
         document.querySelector("#load").classList.remove("visible");
         document.querySelector("#load").classList.add("oculto");*/
